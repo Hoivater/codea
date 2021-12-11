@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\tegsController@allData') -> name('start');
+
+Route::get('/search.html', function () {
+    return view('search');
+}) -> name('search');
+
+Route::get('/tegs.html/{id}', function () {
+    return view('home');
+}) -> name('tegs');
+
+Route::post('/addtegs.html', 'App\Http\Controllers\tegsController@addTegs') -> name('newTegs');

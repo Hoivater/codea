@@ -1,0 +1,29 @@
+%forcirclesignal{
+	width:10px;
+	height:10px;
+	border-radius:5px;
+	float:left;
+	margin-right:5px;
+}
+.circle_red{
+	@extend %forcirclesignal;
+	background:red;
+}
+
+.circle_green{
+	@extend %forcirclesignal;
+	background:green;
+}
+
+.circle_blue{
+	@extend %forcirclesignal;
+	background:blue;
+}
+.version{
+	width:70px;
+	font-weight:bold;
+	cursor:pointer;
+	:hover{
+		color:green;
+	}
+}

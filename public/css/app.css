@@ -1,0 +1,109 @@
+.circle_blue, .circle_green, .circle_red {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  float: left;
+  margin-right: 5px;
+}
+
+.circle_red {
+  background: red;
+}
+
+.circle_green {
+  background: green;
+}
+
+.circle_blue {
+  background: blue;
+}
+
+.version {
+  width: 70px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.version :hover {
+  color: green;
+}
+
+.wrapper a {
+  text-decoration: none;
+}
+.wrapper :active, .wrapper :hover, .wrapper :focus {
+  outline: 0;
+  outline-offset: 0;
+  box-shadow: none;
+}
+
+.author {
+  text-align: right;
+}
+.author a {
+  margin-right: 20px;
+}
+
+.header_top_lvl1 {
+  background: #ffe6db82;
+  border-radius: 0 0 30px 30px;
+}
+
+.header_top {
+  border-bottom: 1px solid #000CFA;
+}
+.header_top li:hover a {
+  /*color:green;*/
+}
+
+.header_top_active {
+  border-top: 1px solid #000CFA;
+}
+
+body {
+  max-width: 800px;
+  background-image: url("/images/f1.svg");
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-color: #ebd4ca;
+  margin: 0 auto;
+}
+body .desc {
+  color: #3A3A3A;
+  font-size: 120%;
+}
+body .blocks {
+  border: 1px solid #DFDFDF;
+  border-radius: 10px;
+}
+body .tegs {
+  color: green;
+  -webkit-text-decoration: dotted;
+          text-decoration: dotted;
+}
+
+.blocks_two {
+  width: 90%;
+  margin-right: 0;
+  background: #fff6f25a;
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.res {
+  background: #D7F2B4;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  float: right;
+}
+
+.add_blocks {
+  background: #f2f0ff;
+  display: none;
+}
+
+.error_message {
+  background: #f2f0ff84;
+  color: red;
+  font-weight: bold;
+  border-radius: 10px 10px;
+}
