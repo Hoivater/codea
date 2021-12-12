@@ -63,6 +63,7 @@ body {
   max-width: 800px;
   background-image: url("/images/f1.svg");
   background-position: top right;
+  background-attachment: fixed;
   background-repeat: no-repeat;
   background-color: #ebd4ca;
   margin: 0 auto;
@@ -86,6 +87,19 @@ body .tegs {
   margin-right: 0;
   background: #fff6f25a;
   border-bottom: 1px solid #DFDFDF;
+}
+
+.blocks_red {
+  width: 90%;
+  margin-right: 0;
+  background: #fff6f25a;
+  border-bottom: 1px solid #DFDFDF;
+}
+
+.success {
+  background: #fff6f25a;
+  color: green;
+  font-weight: bold;
 }
 
 .res {

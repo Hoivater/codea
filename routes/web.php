@@ -19,8 +19,10 @@ Route::get('/search.html', function () {
     return view('search');
 }) -> name('search');
 
-Route::get('/tegs.html/{id}', function () {
-    return view('home');
-}) -> name('tegs');
+Route::get('/redaction/{id}', 'App\Http\Controllers\tegsController@redactionTeg') -> name('redaction');
 
-Route::post('/addtegs.html', 'App\Http\Controllers\tegsController@addTegs') -> name('newTegs');
+Route::get('/tegs/{id}', 'App\Http\Controllers\tegsController@viewTeg') -> name('tegs');
+
+Route::post('/addtegs', 'App\Http\Controllers\tegsController@addTegs') -> name('newTegs');
+
+Route::post('/redTegs', 'App\Http\Controllers\tegsController@redTegs') -> name('redTegs');

@@ -15,6 +15,13 @@
     @endif
 @endsection
 
+@section('right_message')
+    @if(session('success'))
+    <div class="container-fluid blocks success m-3">
+        <p class="m-3">{{ session('success') }}</p>
+    </div>
+    @endif
+@endsection
 
 @section('content')
 
@@ -30,11 +37,13 @@
                 <a href=" {{ route('tegs', $el -> id) }} ">
                     <h3 class="card-title"># {{ $el -> teg }}</h3>
                 </a>
-                  <p class="card-text desc"> {{ $el -> text }}</p>
+                  <p class="card-text desc"> {!! $el -> text_tegs !!}</p>
                   <p class="card-text"><small class="text-muted text-right">@ {{ $el -> author }} {{ $el -> created_at }}</small></p>
                 </div>
             </div>
         </div>
     @endforeach
-
+<div class="container-fluid">
+    {{ $data -> links() }}
+</div>
 @endsection

@@ -16,8 +16,8 @@ class tegsController extends Controller
             $tegs -> author = $arr -> input('author');
         else
             $tegs -> author = "incognita";
-        $tegs -> teg = $arr -> input('teg');
-        $tegs -> text = $arr -> input('text');
+        $tegs -> teg = mb_strtolower($arr -> input('teg'));
+        $tegs -> text = mb_strtolower($arr -> input('text'));
 
         $tegs -> background = "fon_tegs_1.jpg";
         $tegs -> key = $this -> autogenereteF(30);
@@ -30,24 +30,107 @@ class tegsController extends Controller
         return redirect() -> route('start') -> with('success', 'Определение добавлено');
 
     }
+    public function redTegs(tegRequest $arr)
+    {
+        $tegs = new Tegs();
+        if($arr -> input('author'))
+            $tegs -> author = $arr -> input('author');
+        else
+            $tegs -> author = "incognita";
+        $tegs -> teg = mb_strtolower($arr -> input('teg'));
+        $tegs -> text = mb_strtolower($arr -> input('text'));
 
+        $tegs -> key = $arr -> input('key');
+        $tegs -> link = $this -> transcriptionF($arr->input('teg'));
+        $tegs -> description = $this -> descriptionF($arr -> input('teg'));
+
+        $old_version = $arr -> old_version;#получаем version, редактируемой записи из скрытого поля
+
+
+        $tegs -> version = $old_version + 1;
+
+        if($tegs -> version <= 10)
+        {
+            $tegs -> background = "fon_tegs_".$tegs -> version.".jpg";
+        }
+        else
+        {
+            $tegs -> background = "fon_tegs_11.jpg";
+        }
+
+        $tegs -> saves = 0;
+        $tegs -> save();
+        return redirect() -> route('tegs', $tegs -> id) -> with('success', 'Определение изменено');
+
+    }
+
+    public function viewTeg($id)
+    {
+        $tegs = new Tegs();
+
+        $teg = $tegs -> find($id);
+
+        $teg1 = $this -> redactionArrayF([$teg]);
+        $teg = $teg1[0];
+
+        #дальше организовать поиск по ключу, изменений касающихся этого
+
+        $old_tegs = $tegs -> where('key' , '=', $teg -> key) -> orderBy('id', 'desc') -> skip(1) -> take(5) -> get();
+        $old_tegs = $this -> redactionArrayF($old_tegs);
+
+        return view('tegs', ['teg' => $teg, 'old_tegs' => $old_tegs]);
+    }
+    // public function allData()
+    // {
+    //     $tegs = new Tegs();
+    //     $allId = $tegs -> orderBy('id', 'desc') -> get();
+    //     $allId = $this -> redactionArrayF($allId);
+    //     return view('home', ['data' => $allId]);
+    // }
     public function allData()
     {
         $tegs = new Tegs();
-        $allId = $tegs -> orderBy('id', 'desc') -> get();
+        $allId = $tegs -> orderBy('id', 'desc') -> paginate(8);
         $allId = $this -> redactionArrayF($allId);
         return view('home', ['data' => $allId]);
     }
+
+
+
+    public function redactionTeg($id)
+    {
+        $teg = new Tegs();
+        $realTegs = $teg -> find($id);
+        return view('redaction', ['data' => $realTegs]);
+    }
+
 
     public function redactionArrayF($allId)
     {
         foreach($allId as $one)
         {
             $one -> version1 = $this -> realVersionF($one -> version);
+            $one -> text_tegs = $this -> addTegInTextF($one -> text);#создаем текст с включенными тегами
         }
         return $allId;
     }
+    public function addTegInTextF($text)
+    {
+        $teg = new Tegs();
+        $tegForSearch = $teg -> all();
+        foreach($tegForSearch as $one)
+        {
 
+            // echo $text."---".$one -> teg."--Результат:".stripos($text, trim($one -> teg))."<br />";
+            if(stripos($text, trim($one -> teg)) !== false)
+            {
+                $replace = "<a href = '".route('tegs', $one->id)."' class='tegs'> ".$one -> teg."</a>";
+
+                $text = str_replace($one -> teg, $replace, $text);
+            }
+        }
+        return $text;
+    }
     public function realVersionF($num)
     {
         if($num <= 10)

@@ -30,6 +30,8 @@
        @include('inc.add_tegs')
 
        @yield('error_message')
+       @yield('right_message')
+
        @yield('search_field')
 
        @yield('content')
