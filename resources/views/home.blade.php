@@ -42,8 +42,10 @@
                 </div>
             </div>
         </div>
-    @endforeach
-<div class="container-fluid">
+    @endforeach 
+<div class="container-fluid mt-3" style= 'margin-bottom:80px;'>
+    <div class="pagination_bootstrap">
     {{ $data -> links() }}
+    </div>
 </div>
 @endsection

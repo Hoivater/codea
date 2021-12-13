@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\tegsController@allData') -> name('start');
+Route::get('/', 'App\Http\Controllers\tegsController@infoWiki') -> name('info');
+Route::get('/{parametr}', 'App\Http\Controllers\tegsController@paramData') -> name('sort');
 
 Route::get('/search.html', function () {
     return view('search');

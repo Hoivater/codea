@@ -19,6 +19,7 @@ class CreateTegsTable extends Migration
             $table -> string('teg');
             $table -> string('key');
             $table -> string('link');
+            $table -> string('views');
             $table -> string('text');
             $table -> string('description');
             $table -> string('version');

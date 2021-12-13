@@ -28,6 +28,7 @@
 
             <input type = 'text' class = "form-control mt-2" name = "teg" style = 'display: none;' value = "{{ $data -> teg }}"/>
             <input type = 'text' name = 'key' value = '{{$data -> key}}' style = 'display: none;'/>
+            <input type = 'text' name = 'old_id' value = '{{$data -> id}}' style = 'display: none;'/>
 
             <input type = 'text' name = 'old_version' value = '{{$data -> version}}' style = 'display: none;'/>
 

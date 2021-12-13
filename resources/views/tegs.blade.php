@@ -50,11 +50,12 @@
 
 
         @foreach($old_tegs as $old_teg)
+        @if($old_teg -> views == 'Off')
         <div class="container-fluid blocks_two mt-3" style = "background-image:url('/images/fon/{{ $old_teg -> background }}');">
                 <div class="row mt-2">
                     <div class="col-12">
 
-                        <div class='circle_red mt-1'></div> {{$old_teg -> version1}} <a href = "{{ route('redaction', $old_teg -> id ) }}">Редактировать </a><a href = '#'>Поделиться</a>
+                        <div class='circle_red mt-1'></div> {{$old_teg -> version1}} <!-- <a href = "{{ route('redaction', $old_teg -> id ) }}">Редактировать </a><a href = '#'>Поделиться</a> -->
                     <h3 class="card-title">#{{$old_teg -> teg}}</h3>
                       <p class="card-text desc">{{$old_teg -> text}}</p>
                       <p class="card-text"><small class="text-muted text-right"> {{$old_teg -> created_at}}</small></p>
@@ -64,7 +65,13 @@
                     </div>
                 </div>
             </div>
+            @endif
         @endforeach
 
+<div class="container-fluid mt-3 " style= 'margin-bottom:80px;'>
+    <div class="pagination_bootstrap">
+    {{ $old_tegs -> links() }}
+    </div>
+</div>
 
 @endsection

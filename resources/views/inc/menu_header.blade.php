@@ -7,12 +7,12 @@
                     WIKI
                   </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{{ route('start') }}">На главную</a></li>
-            <li><a class="dropdown-item" href="#">По популярности</a></li>
-            <li><a class="dropdown-item" href="#">По алфавиту</a></li>
-            <li><a class="dropdown-item" href="#">По дате добавления</a></li>
+            <li><a class="dropdown-item" href="{{ route('sort', 'on_desc') }}">По дате (убыванию)</a></li>
+            <li><a class="dropdown-item" href="{{ route('sort', 'on_asc') }}">По дате (возрастанию)</a></li>
+            <!-- <li><a class="dropdown-item" href="#">По популярности</a></li> -->
+            <li><a class="dropdown-item" href="{{route('sort', 'alphavit')}}">По алфавиту</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Про wikiLess</a></li>
+            <li><a class="dropdown-item" href="{{ route('info') }}">Про wikiLess</a></li>
           </ul>
         </li>
         <li class="nav-item"><a href="#" class="nav-link addDesc">Добавить</a></li>
