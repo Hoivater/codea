@@ -18,21 +18,6 @@
 </head>
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
 <div class="wrapper">
 
 
@@ -56,9 +41,10 @@
 
 
 </div>
+
 <footer class="footer_bottom container fixed-bottom p-3">
   <div class="container">
-    <span class="text-muted">Работа от info@gifit.ru, 2020 @wiki150</span>
+    <span class="text-muted">Работа от info@gifit.ru, 2021 @wiki150</span>
   </div>
 </footer>
 </div>

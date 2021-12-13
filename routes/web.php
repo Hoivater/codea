@@ -13,17 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+#главная страница с описанием и графиком добавления записей
 Route::get('/', 'App\Http\Controllers\tegsController@infoWiki') -> name('info');
-Route::get('/{parametr}', 'App\Http\Controllers\tegsController@paramData') -> name('sort');
 
-Route::get('/search.html', function () {
-    return view('search');
-}) -> name('search');
 
-Route::get('/redaction/{id}', 'App\Http\Controllers\tegsController@redactionTeg') -> name('redaction');
+#страница выводящая все теги под сортировку
+Route::get('/tegs/{parametr}', 'App\Http\Controllers\tegsController@paramData') -> name('sort');
 
-Route::get('/tegs/{id}', 'App\Http\Controllers\tegsController@viewTeg') -> name('tegs');
 
+#страница поиска
+Route::get('/search', 'App\Http\Controllers\tegsController@searchData') -> name('searchTegs');
+
+#страница расширения тега, его изменения
+Route::get('/teg/redaction/{id}', 'App\Http\Controllers\tegsController@redactionTeg') -> name('redaction');
+#страница тега, ниже выводятся его измененные версии
+Route::get('/teg/{id}', 'App\Http\Controllers\tegsController@viewTeg') -> name('tegs');
+
+#обработчик добавления тега
 Route::post('/addtegs', 'App\Http\Controllers\tegsController@addTegs') -> name('newTegs');
-
+#обработчик редактирования тега
 Route::post('/redTegs', 'App\Http\Controllers\tegsController@redTegs') -> name('redTegs');

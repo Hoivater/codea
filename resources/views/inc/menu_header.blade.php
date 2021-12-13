@@ -16,7 +16,7 @@
           </ul>
         </li>
         <li class="nav-item"><a href="#" class="nav-link addDesc">Добавить</a></li>
-        <li class="nav-item"><a href="{{ route('search') }}" class="nav-link">Поиск</a></li>
+        <li class="nav-item"><a href="{{ route('searchTegs') }}" class="nav-link">Поиск</a></li>
       </ul>
     </header>
   </div>

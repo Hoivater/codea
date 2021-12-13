@@ -12,9 +12,83 @@ class tegsController extends Controller
 {
     //
 
-    #стандартное добавление тега
+#главная страница с описанием и графиком добавления записей
+    public function infoWiki()
+    {
+        return view('info');
+    }
+
+
+#страница выводящая все теги предварительно сортируя
+    public function paramData($param)
+    {
+        Paginator::useBootstrap();
+        $tegs = new Tegs();
+        if($param == "alphavit")
+        {
+            $allId = $tegs -> where('views', '=', 'On') -> orderBy('teg', 'asc')  -> paginate(8);
+        }
+        elseif($param == "on_asc")
+        {
+            $allId = $tegs -> where('views', '=', 'On') -> orderBy('id', 'asc')  -> paginate(8);
+        }
+        elseif($param == "on_desc")
+        {
+            $allId = $tegs -> where('views', '=', 'On') -> orderBy('id', 'desc')  -> paginate(8);
+        }
+        $allId = $this -> redactionArrayF($allId);
+        return view('alltegs', ['data' => $allId]);
+    }
+
+
+
+#страница поиска
+    public function searchData()
+        {
+            return view('search');
+        }
+
+#страница расширения тега, его изменения##########################################################
+    public function redactionTeg($id)
+    {
+        $teg = new Tegs();
+        $realTegs = $teg -> find($id);
+        return view('redaction', ['data' => $realTegs]);
+    }
+#страница тега, ниже выводятся его измененные версии##########################################################
+    public function viewTeg($id)
+    {
+        Paginator::useBootstrap();
+        $tegs = new Tegs();
+
+        $teg = $tegs -> find($id);
+
+        $teg1 = $this -> redactionArrayF([$teg]);
+        $teg = $teg1[0];
+
+        #дальше организовать поиск по ключу, изменений касающихся этого
+
+        $old_tegs = $tegs -> where('key' , '=', $teg -> key) -> orderBy('id', 'desc') -> skip(1) -> paginate(5);
+        $old_tegs = $this -> redactionArrayF($old_tegs);
+
+        return view('tegs', ['teg' => $teg, 'old_tegs' => $old_tegs]);
+    }
+
+#обработчик добавления тега##########################################################
     public function addTegs(tegRequest $arr)
     {
+        #проверка - если тег есть, переотправляем пользователя на страницу с ним
+        $tegi = mb_strtolower($arr -> input('teg'));
+
+        $search = Tegs::select('id', 'teg')->where('views', 'On')->get();
+
+        foreach($search as $sear)
+        {
+            if($tegi == $sear -> teg)
+            {
+                return redirect() -> route('tegs', $sear -> id) -> with('success', 'Такой тег уже существует, вы его можете изменить.');
+            }
+        }
         $tegs = new Tegs();
         if($arr -> input('author'))
             $tegs -> author = $arr -> input('author');
@@ -33,11 +107,13 @@ class tegsController extends Controller
         $tegs -> version = 1;
         $tegs -> saves = 0;
         $tegs -> save();
-        return redirect() -> route('start') -> with('success', 'Определение добавлено');
+        return redirect() -> route('sort', 'on_desc') -> with('success', 'Определение добавлено');
 
     }
 
-    #редактирование тега
+#обработчик редактирования тега##########################################################
+
+
     public function redTegs(tegRequest $arr)
     {
         $tegs = new Tegs();
@@ -81,71 +157,9 @@ class tegsController extends Controller
 
     }
 
-    public function viewTeg($id)
-    {
-        Paginator::useBootstrap();
-        $tegs = new Tegs();
-
-        $teg = $tegs -> find($id);
-
-        $teg1 = $this -> redactionArrayF([$teg]);
-        $teg = $teg1[0];
-
-        #дальше организовать поиск по ключу, изменений касающихся этого
-
-        $old_tegs = $tegs -> where('key' , '=', $teg -> key) -> orderBy('id', 'desc') -> skip(1) -> paginate(5);
-        $old_tegs = $this -> redactionArrayF($old_tegs);
-
-        return view('tegs', ['teg' => $teg, 'old_tegs' => $old_tegs]);
-    }
-    // public function allData()
-    // {
-    //     $tegs = new Tegs();
-    //     $allId = $tegs -> orderBy('id', 'desc') -> get();
-    //     $allId = $this -> redactionArrayF($allId);
-    //     return view('home', ['data' => $allId]);
-    // }
-    public function allData()
-    {
-        Paginator::useBootstrap();
-        $tegs = new Tegs();
-        $allId = $tegs -> where('views', '=', 'On') -> orderBy('id', 'desc')  -> paginate(8);
-
-        $allId = $this -> redactionArrayF($allId);
-        return view('home', ['data' => $allId]);
-    }
-
-    public function infoWiki()
-    {
-        return view('info');
-    }
-    public function paramData($param)
-    {
-        Paginator::useBootstrap();
-        $tegs = new Tegs();
-        if($param == "alphavit")
-        {
-            $allId = $tegs -> where('views', '=', 'On') -> orderBy('teg', 'asc')  -> paginate(8);
-        }
-        elseif($param = "on_asc")
-        {
-            $allId = $tegs -> where('views', '=', 'On') -> orderBy('id', 'asc')  -> paginate(8);
-        }
-        elseif($param = "on_desc")
-        {
-            $allId = $tegs -> where('views', '=', 'On') -> orderBy('id', 'desc')  -> paginate(8);
-        }
-        $allId = $this -> redactionArrayF($allId);
-        return view('home', ['data' => $allId]);
-    }
 
 
-    public function redactionTeg($id)
-    {
-        $teg = new Tegs();
-        $realTegs = $teg -> find($id);
-        return view('redaction', ['data' => $realTegs]);
-    }
+#Вспомогательные функции##########################################################
 
 
     public function redactionArrayF($allId)

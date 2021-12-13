@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Главная страница
+Страница тегов
 @endsection
 
 
@@ -26,7 +26,7 @@
 @section('content')
 
     @foreach($data as $el)
-        <div class="container-fluid blocks mt-3" style = "background-image:url('images/fon/{{ $el -> background }}');">
+        <div class="container-fluid blocks mt-3" style = "background-image:url( {{ route('info').'/images/fon/'.$el -> background }} );">
             <div class="row">
                 <div class="col-12">
 
