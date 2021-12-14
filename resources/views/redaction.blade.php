@@ -32,7 +32,7 @@
 
             <input type = 'text' name = 'old_version' value = '{{$data -> version}}' style = 'display: none;'/>
 
-            <textarea class="form-control mt-2" name = "text" placeholder="Определение" maxlength="150" >{{ $data -> text }}</textarea>
+            <textarea class="form-control mt-2 redtext" name = "text" placeholder="Определение" maxlength="150" >{{ $data -> text }}</textarea>
             <button type="submit" class="btn btn-success mt-2">Загрузить</button>   <p class = "res p-1 mt-3">150</p>
         </form>
     </div>

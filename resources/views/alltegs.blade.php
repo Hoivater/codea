@@ -26,7 +26,7 @@
 @section('content')
 
     @foreach($data as $el)
-        <div class="container-fluid blocks mt-3" style = "background-image:url( {{ route('info').'/images/fon/'.$el -> background }} );">
+    <div class="container-fluid blocks mt-3" style = "background-image:url( {{ route('info').'/images/fon/'.$el -> background }} );">
             <div class="row">
                 <div class="col-12">
 
@@ -34,8 +34,8 @@
                 <a tabindex="0" class="btn btn-sm btn-light" role="button" data-bs-html="true"  data-bs-toggle="popover" data-bs-trigger="focus" title="Информация" data-bs-content="Изменений: {{ $el -> version }}<br /> Авторов: ? <br /> Поделились: {{ $el -> saves }}"><div class='circle_green mt-1'></div>v. {{ $el -> version1 }} </a>
 
 
-                <a href=" {{ route('tegs', $el -> id) }} ">
-                    <h3 class="card-title"># {{ $el -> teg }}</h3>
+                <a href=" {{ route('tegs', $el -> id) }} " class="main_teg_link">
+                    <h3 class="card-title "># {{ $el -> teg }}</h3>
                 </a>
                   <p class="card-text desc"> {!! $el -> text_tegs !!}</p>
                   <p class="card-text"><small class="text-muted text-right">@ {{ $el -> author }} {{ $el -> created_at }}</small></p>

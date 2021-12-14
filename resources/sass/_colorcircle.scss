@@ -1,7 +1,7 @@
 %forcirclesignal{
-	width:10px;
-	height:10px;
-	border-radius:5px;
+	width:20px;
+	height:20px;
+	border-radius:10px;
 	float:left;
 	margin-right:5px;
 }
@@ -12,12 +12,12 @@
 
 .circle_green{
 	@extend %forcirclesignal;
-	background:green;
+	background:#00f700;
 }
 
 .circle_blue{
 	@extend %forcirclesignal;
-	background:blue;
+	background:#006FFF;
 }
 .version{
 	width:70px;

@@ -157,6 +157,13 @@ class tegsController extends Controller
 
     }
 
+    public function index(Request $request){
+        //$n = $request->all()['postal'];
+        $request = $request -> postal;
+        $result = Tegs::where('teg', 'LIKE', '%'.$request.'%') -> where('views', '=', 'On') -> get();
+        $result = $this -> redactionArrayF($result);
+        return view('result_search', ['data' => $result]);
+    }
 
 
 #Вспомогательные функции##########################################################
@@ -237,6 +244,5 @@ class tegsController extends Controller
     {
         return "Что такое ".$n."?";
     }
-
 
 }

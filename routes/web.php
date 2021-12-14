@@ -29,6 +29,12 @@ Route::get('/teg/redaction/{id}', 'App\Http\Controllers\tegsController@redaction
 #страница тега, ниже выводятся его измененные версии
 Route::get('/teg/{id}', 'App\Http\Controllers\tegsController@viewTeg') -> name('tegs');
 
+
+#AJAX
+Route::post('/postmsg','App\Http\Controllers\tegsController@index') -> name('postmsg');
+
+
+
 #обработчик добавления тега
 Route::post('/addtegs', 'App\Http\Controllers\tegsController@addTegs') -> name('newTegs');
 #обработчик редактирования тега

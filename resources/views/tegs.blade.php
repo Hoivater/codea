@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Главная страница
+{{ $teg -> teg }}
 @endsection
 
 
@@ -14,6 +14,9 @@
     </div>
     @endif
 @endsection
+
+
+@section('description'){{ $teg -> description }}@endsection
 
 
 @section('right_message')
