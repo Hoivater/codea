@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="243.42mm" height="428.3mm" version="1.1" viewBox="0 0 243.42 428.3" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(26.293 55.591)" stroke="#000">
+  <ellipse cx="114.83" cy="336.46" rx="34.37" ry="35.741" fill="#27eaff" stroke-width="1.0205"/>
+  <rect transform="rotate(40.798)" x="198.17" y=".25082" width="46.149" height="44.322" fill="#4dff27" stroke-width=".765"/>
+  <rect transform="rotate(10.862)" x="143.33" y="160.55" width="46.149" height="44.322" fill="#27ff5d" fill-opacity=".31325" stroke-width=".765"/>
+  <g stroke-width=".765">
+   <rect transform="rotate(-2.9783)" x="88.82" y="244.25" width="46.149" height="44.322" fill="#77eaab"/>
+   <rect transform="rotate(26.755)" x="192.18" y="4.0067" width="46.149" height="44.322" fill="#86ff27"/>
+   <rect transform="rotate(1.0284)" x="171.39" y="42.709" width="46.149" height="44.322" fill="#f3ff27"/>
+  </g>
+  <rect transform="rotate(-18.035)" x="148.05" y="52.025" width="46.149" height="44.322" fill="#2a27ff" fill-opacity=".98795" stroke-width=".765"/>
+  <g stroke-width=".765">
+   <rect transform="rotate(-73.23)" x="41.783" y="106.93" width="46.149" height="44.322" fill="#f027ff"/>
+   <rect transform="rotate(265.86)" x=".86771" y="70.482" width="46.149" height="44.322" fill="#ff27af"/>
+   <rect transform="rotate(244.53)" x="-24.824" y="21.65" width="46.149" height="44.322" fill="#27ffb6"/>
+   <rect transform="rotate(195.45)" x="-32.724" y="-48.361" width="46.149" height="44.322" fill="#27eaff"/>
+  </g>
+ </g>
+</svg>

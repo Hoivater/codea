@@ -1,11 +1,16 @@
-.blocks{
+.blocks, .blocks_two{
 	border:1px solid #9DA8C0;
 	border-radius:20px;
 	padding:10px;
+	background:#dedede;
 	.desc{
 		font-size:130%;
 	}
 }
 .main_teg_link{
 	text-decoration:none;	
+}
+.blocks_two{
+	width:78%;
+	margin-right:0;
 }

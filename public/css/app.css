@@ -27,12 +27,13 @@
   color: green;
 }
 
-.blocks {
+.blocks, .blocks_two {
   border: 1px solid #9DA8C0;
   border-radius: 20px;
   padding: 10px;
+  background: #dedede;
 }
-.blocks .desc {
+.blocks .desc, .blocks_two .desc {
   font-size: 130%;
 }
 
@@ -40,8 +41,14 @@
   text-decoration: none;
 }
 
+.blocks_two {
+  width: 78%;
+  margin-right: 0;
+}
+
 .add_blocks {
   display: none;
+  background: #dedede;
 }
 .add_blocks input {
   font-size: 120%;
@@ -72,4 +79,9 @@ input:hover, textarea:hover {
 
 .logo_ga img {
   max-width: 100px;
+}
+
+.vopr {
+  height: 400px;
+  transform: rotate(90deg);
 }
