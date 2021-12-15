@@ -23,8 +23,14 @@ WIKISTRING
     @endif
 @endsection
 
-@section('content')
 
+
+@section('content')
+        @if(isset($auth))
+            <div class="userhello">
+                <p>{{ $auth -> name }}, мы рады вас снова видеть на портале wikistring</p>
+            </div> 
+        @endif
         <div class="container-fluid blocks mt-3">
             <div class="row">
                 <div class="col-12">
@@ -41,6 +47,12 @@ WIKISTRING
                         <p class="text-justify"><div class = 'circle_blue'></div>Веб-приложение создано, как учебный полигон для отработки полезностей Laravel. Стараюсь захватить в них как можно больше функций, обычно востребованных в любых других сайтах. Ниже по датам расписаны появляющиеся функции. Основные моменты создания отражены на <a href = "https://gifit.ru">gifit.ru</a></p>
                     </div>
                     <div class="date">
+                        <p class="text-center mt-3">15.12.2021</p>
+                    </div>
+                    <div class="newday">
+                        <p class="text-justify"><div class = 'circle_green'></div>Сегодня появилась возможность зарегистрироваться, добавление определения восприимчиво к имени автора. Стало возможно открыть определения созданные определенным автором. </p>
+                    </div>
+                    <div class="date">
                         <p class="text-center mt-3">14.12.2021</p>
                     </div>
                     <div class="newday">
@@ -50,9 +62,9 @@ WIKISTRING
                         <p class="text-center mt-3">-.-.202-</p>
                     </div>
                     <div class="newday">
-                        <p class="text-justify"><div class = 'circle_red'></div> Регистрация, возможность удалять определения, участнику с админправами.</p>
+                        <p class="text-justify"><div class = 'circle_red'></div> </p>
                         
-                        <p class="text-justify"><div class = 'circle_red'></div> Регистрация, возможность удалять определения, участнику с админправами.</p>
+                        <p class="text-justify"><div class = 'circle_red'></div> </p>
                         
                     </div>
                 </div>

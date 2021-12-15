@@ -21,6 +21,10 @@ Route::get('/', 'App\Http\Controllers\tegsController@infoWiki') -> name('info');
 Route::get('/tegs/{parametr}', 'App\Http\Controllers\tegsController@paramData') -> name('sort');
 
 
+#страница выводящая все теги определенного автора
+Route::get('/author/{parametr}', 'App\Http\Controllers\tegsController@authorData') -> name('author');
+
+
 #страница поиска
 Route::get('/search', 'App\Http\Controllers\tegsController@searchData') -> name('searchTegs');
 
@@ -39,3 +43,10 @@ Route::post('/postmsg','App\Http\Controllers\tegsController@index') -> name('pos
 Route::post('/addtegs', 'App\Http\Controllers\tegsController@addTegs') -> name('newTegs');
 #обработчик редактирования тега
 Route::post('/redTegs', 'App\Http\Controllers\tegsController@redTegs') -> name('redTegs');
+
+#деавторизация
+Route::get('/exit', 'App\Http\Controllers\tegsController@killUser') -> name('exit');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

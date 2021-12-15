@@ -24,8 +24,9 @@
     <div class="col-12">
         <form action="{{ route('redTegs') }}" class="m-3" name="redDescription" method = 'post'>
             {{csrf_field()}}
+            @guest
             <input type = 'text' class = "form-control mt-2" name = "author" placeholder="Ваш ник* не обязательно" />
-
+            @endguest
             <input type = 'text' class = "form-control mt-2" name = "teg" style = 'display: none;' value = "{{ $data -> teg }}"/>
             <input type = 'text' name = 'key' value = '{{$data -> key}}' style = 'display: none;'/>
             <input type = 'text' name = 'old_id' value = '{{$data -> id}}' style = 'display: none;'/>

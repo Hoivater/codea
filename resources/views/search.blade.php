@@ -40,7 +40,11 @@
 
 
 @section('content')
-    <h3 class="text-center dialog">Просто начните вводить искомое ...</h3>
-    <div class="unique"></div>
+    <h3 class="text-center dialog mt-3">Просто начните вводить искомое ...</h3>
+    <div class="unique">
+        <div class="text-center">
+            <img src = "{{route('info')}}/images/data/vopr.svg" class="vopr" />
+        </div>
+    </div>
     
 @endsection

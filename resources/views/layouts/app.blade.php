@@ -32,6 +32,7 @@
 
 
 <div class="container main">
+        
 
 
        @include('inc.add_tegs')
@@ -51,7 +52,7 @@
 
 <footer class="footer_bottom container fixed-bottom p-3">
   <div class="container">
-    <span class="text-muted">Работа от info@gifit.ru, 2021 @wiki150</span>
+    <span class="text-muted">Работа от info@gifit.ru, 2021 @wikistring</span>
   </div>
 </footer>
 </div>

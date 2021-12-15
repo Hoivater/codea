@@ -5,7 +5,9 @@
     <div class="col-12">
         <form action="{{ route('newTegs') }}" class="m-3" name="newDescription" method = 'post'>
             {{csrf_field()}}
-            <input type = 'text' class = "form-control mt-2" name = "author" placeholder="Ваш ник* не обязательно" value = "{{ old('author') }}"/>
+            @guest 
+                <input type = 'text' class = "form-control mt-2" name = "author" placeholder="Ваш ник* не обязательно" value = "{{ old('author') }}"/>
+            @endguest
 
             <input type = 'text' class = "form-control mt-2" name = "teg" placeholder="Тег" value = "{{ old('teg') }}"/>
 

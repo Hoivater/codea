@@ -45,7 +45,7 @@
                   <p class="card-text"><small class="text-muted text-right">{{$teg -> created_at}}</small></p>
                 </div>
                 <div class="author m-3">
-                    <a href = "#author">@ {{$teg -> author}} </a>
+                    <a href = "{{route('author', $teg -> author)}}">@ {{$teg -> author}} </a>
                 </div>
             </div>
         </div>

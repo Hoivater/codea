@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\tegRequest;
 use App\Models\Tegs;
 use Illuminate\Pagination\Paginator;
-
+use Auth;
 
 class tegsController extends Controller
 {
@@ -15,7 +15,9 @@ class tegsController extends Controller
 #главная страница с описанием и графиком добавления записей
     public function infoWiki()
     {
-        return view('info');
+        $user = Auth::user();
+
+        return view('info', ['auth' => $user]);
     }
 
 
@@ -90,10 +92,16 @@ class tegsController extends Controller
             }
         }
         $tegs = new Tegs();
-        if($arr -> input('author'))
-            $tegs -> author = $arr -> input('author');
+        if (Auth::check()) {
+            $tegs -> author = Auth::user() -> name;
+        }
         else
-            $tegs -> author = "incognita";
+        {
+            if($arr -> input('author'))
+                $tegs -> author = $arr -> input('author');
+            else
+                $tegs -> author = "incognita";
+        }
         $tegs -> teg = mb_strtolower($arr -> input('teg'));
         $tegs -> text = mb_strtolower($arr -> input('text'));
 
@@ -110,17 +118,32 @@ class tegsController extends Controller
         return redirect() -> route('sort', 'on_desc') -> with('success', 'Определение добавлено');
 
     }
-
+public function authorData($param)
+{
+    Paginator::useBootstrap();
+    $tegs = new Tegs();
+   
+    $allId = $tegs -> where('author', '=', $param) -> orderBy('id', 'desc')  -> paginate(8);
+    $allId = $this -> redactionArrayF($allId);
+    
+    return view('alltegs', ['data' => $allId]);
+}
 #обработчик редактирования тега##########################################################
 
 
     public function redTegs(tegRequest $arr)
     {
         $tegs = new Tegs();
-        if($arr -> input('author'))
-            $tegs -> author = $arr -> input('author');
+          if (Auth::check()) {
+            $tegs -> author = Auth::user() -> name;
+        }
         else
-            $tegs -> author = "incognita";
+        {
+            if($arr -> input('author'))
+                $tegs -> author = $arr -> input('author');
+            else
+                $tegs -> author = "incognita";
+        }
         $tegs -> teg = mb_strtolower($arr -> input('teg'));
         $tegs -> text = mb_strtolower($arr -> input('text'));
 
@@ -155,6 +178,12 @@ class tegsController extends Controller
 
         return redirect() -> route('tegs', $tegs -> id) -> with('success', 'Определение изменено');
 
+    }
+
+    public function killUser()
+    {
+        Auth::logout();
+        return redirect() -> route('info');
     }
 
     public function index(Request $request){
